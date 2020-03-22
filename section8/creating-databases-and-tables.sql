@@ -51,7 +51,8 @@
 
 SELECT * FROM link;
 
--- Create table from another one preserving the same structure
+-- Create table from another one preserving the same structure.
+-- Does not copy the rows.
 CREATE TABLE link_copy LIKE (link);
 SELECT * FROM link_copy;
 
@@ -66,6 +67,30 @@ SELECT * FROM link;
 INSERT INTO link(url, name)
 VALUES
 ('www.a.com', 'A'),
+('www.amazon.com', 'amazon'),
 ('www.b.com', 'B');
+
+-- Update all values of description column
+UPDATE link
+SET description = 'Empty Description';
+
+-- Update only certain colums 
+UPDATE link
+SET description = 'Name starts with an A'
+WHERE name LIKE 'A%';
+
+-- Add RETURNING keyword to get back the updated values.
+UPDATE link
+SET description = 'Some description'
+WHERE id = 3
+RETURNING id, url, name, description;
+
+-- Delete row with some condition
+SELECT * FROM link;
+DELETE from link
+WHERE name = 'A'
+RETURNING *;
+
+
 
 
