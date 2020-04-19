@@ -227,9 +227,19 @@ VALUES (
 	'1990-11-13',
 	'2010-12-01',
 	1000
+);
+
+INSERT INTO employees(
+	first_name,
+	last_name,
+	birthdate,
+	hire_date,
+	salary
 )
-
-
-
-
-
+VALUES (
+	'Sammy',
+	'Lynt',
+	'1995-11-13',
+	'2016-12-01',
+	900
+);
