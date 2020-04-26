@@ -91,3 +91,45 @@ SELECT char_length(inventory_id) FROM rental;
 
 -- So, lets use CAST to make use of the 'char_length'
 SELECT char_length(CAST(inventory_id AS VARCHAR)) FROM rental;
+
+-- ==============================
+-- VIEWS: used TO store a query that is used very often, insteado of
+-- executing the same query multiple times
+
+SELECT first_name, last_name, address_id FROM customer c;
+
+SELECT address FROM address a;
+
+-- Initial query:
+SELECT first_name, last_name, address FROM customer
+INNER JOIN address
+ON customer.address_id = address.address_id;
+
+-- Create a view for the previous query
+CREATE VIEW customer_info AS
+SELECT first_name, last_name, address FROM customer
+INNER JOIN address
+ON customer.address_id = address.address_id;
+
+-- Now we can get the same output with:
+SELECT * FROM customer_info;
+
+-- If we want to edit que view (e.g. add 'district' column):
+CREATE OR REPLACE VIEW customer_info AS
+SELECT first_name, last_name, address, district FROM customer
+INNER JOIN address
+ON customer.address_id = address.address_id;
+
+-- To remove a view (use 'IF EXISTS' to prevent errors):
+DROP VIEW IF EXISTS customer_info
+
+-- To rename a VIEW:
+ALTER VIEW customer_info RENAME TO c_info;
+
+SELECT * FROM c_info;
+
+DROP VIEW c_info;
+
+-- ==============================
+-- IMPORT/EXPORT: import data from csv file to already created table
+-- The 'simple' table example has been created on 'conditional_expressions.sql'

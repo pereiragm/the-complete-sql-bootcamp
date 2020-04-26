@@ -33,7 +33,14 @@ NULLIF(SUM(CASE WHEN department = 'B' THEN 1 ELSE 0 END), 0)
 ) AS department_ratio
 FROM depts
 
+-- =============================================
+-- Create simple_table
+CREATE TABLE simple(
+	a INTEGER,
+	b INTEGER,
+	c INTEGER
+	
+);
 
-
-
+SELECT * FROM SIMPLE;
 
