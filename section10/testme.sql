@@ -42,5 +42,5 @@ CREATE TABLE simple(
 	
 );
 
+-- After importing 
 SELECT * FROM SIMPLE;
-
